@@ -4,6 +4,7 @@ const stylesFn = () => {
   return StyleSheet.create({
     container: {
       margin: "5%",
+      alignItems: "center",
     },
     form: {
       width: "100%",

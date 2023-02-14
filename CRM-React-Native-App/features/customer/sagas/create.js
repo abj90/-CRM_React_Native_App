@@ -1,9 +1,11 @@
-import { all, put, select, takeLatest, delay } from "redux-saga/effects";
+import { put, select, takeLatest, delay } from "redux-saga/effects";
 import {
   createCustomer,
   createCustomerResult,
   createCustomerError,
 } from "../reducers";
+import { set } from "../../../util/async-storage";
+import { CUSTOMERS_KEY } from "../../../util/constans";
 
 export function* watchCreateCustomer() {
   yield takeLatest(createCustomer.toString(), takeCreateCustomer);
@@ -20,6 +22,8 @@ export function* takeCreateCustomer() {
     // mocking api call
     yield delay(500);
     const result = [...customerList, newCustomer];
+
+    yield set(CUSTOMERS_KEY, result);
 
     yield put(createCustomerResult(result));
   } catch (err) {

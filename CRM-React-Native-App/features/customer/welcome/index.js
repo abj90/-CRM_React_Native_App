@@ -1,11 +1,23 @@
-import { View, TouchableOpacity, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import Button from "../../../components/Button";
 import stylesFn from "./style";
 import { useNavigation } from "@react-navigation/native";
+import { useCleanAsncStorage } from "../hooks";
 
 const Welcome = () => {
   const { navigate } = useNavigation();
   const styles = stylesFn();
+  const { onCleanAsyncStorage } = useCleanAsncStorage();
+
+  const createAlert = () =>
+    Alert.alert("CRM", "Async Store has been cleanned", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ]);
 
   return (
     <View style={styles.container}>
@@ -21,7 +33,8 @@ const Welcome = () => {
       <Button
         text={"Clear Storage"}
         onPress={() => {
-          console.log("hi there");
+          onCleanAsyncStorage();
+          createAlert();
         }}
         disabled={false}
       />

@@ -14,13 +14,8 @@ const CustomerForm = ({ onSubmit, customerId, status }) => {
 
   const { firstName, lastName, isActive, region } = fields;
 
-  console.log("status", status);
-  console.log("fields from form: ", fields);
-
   //generate regions buttons list - start
   const getBtnListWithSelectedBtnUpdated = (btnList, selectedBtnId) => {
-    console.log("btnList", btnList);
-    console.log("selectedBtnId", selectedBtnId);
     return btnList.map((el) => {
       if (el.id == selectedBtnId) {
         return { ...el, backgroundColor: "#13678A", color: "#FFFFFF" };
@@ -122,12 +117,13 @@ const CustomerForm = ({ onSubmit, customerId, status }) => {
           </TouchableOpacity>
         ))}
         <View style={styles.divider}></View>
-        <Button
-          text={"Save Customer"}
-          onPress={onHandleSubmit}
-          disabled={status !== PENDING}
-        />
       </View>
+      <Button
+        style={styles.btn}
+        text={"Save Customer"}
+        onPress={onHandleSubmit}
+        disabled={status !== PENDING}
+      />
     </View>
   );
 };

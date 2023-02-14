@@ -5,10 +5,17 @@ import {
   createCustomer,
   editCustomer,
   setForm,
+  loadCustomers,
+  cleanCustomerStorage,
 } from "./reducers";
 import { PENDING } from "../../util/constans";
 
 export const useGetCustomersByRegion = (regionId) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadCustomers());
+  }, [dispatch]);
+
   const customerList = useSelector((state) => {
     return state.customer.customers;
   });
@@ -16,6 +23,7 @@ export const useGetCustomersByRegion = (regionId) => {
   const customerListFilteredByRegion = customerList.filter(
     (item) => item.region.id == regionId
   );
+
   return customerListFilteredByRegion;
 };
 
@@ -68,4 +76,14 @@ export const useUpdateField = (customerId) => {
 
 export const useEditCustomerStatus = () => {
   return useSelector((state) => state.customer.edit.status);
+};
+
+export const useCleanAsncStorage = () => {
+  const dispatch = useDispatch();
+
+  return {
+    onCleanAsyncStorage: () => {
+      dispatch(cleanCustomerStorage());
+    },
+  };
 };

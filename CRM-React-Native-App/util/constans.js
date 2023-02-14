@@ -3,6 +3,8 @@ export const REQUESTING = "REQUESTING";
 export const SUCCESS = "SUCCESS";
 export const ERROR = "ERROR";
 
+export const CUSTOMERS_KEY = "CUSTOMERS_KEY";
+
 export const regionsBtnOptions = [
   {
     id: "b3fb0220-a6b1-11ed-afa1-0242ac120002",

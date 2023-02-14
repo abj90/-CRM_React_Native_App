@@ -22,6 +22,12 @@ const initialState = {
   error: {
     message: "",
   },
+  loading: {
+    status: PENDING,
+  },
+  clean: {
+    status: PENDING,
+  },
 };
 
 const reducers = {
@@ -76,6 +82,23 @@ const reducers = {
 
     state.form.fields = fields;
   },
+
+  loadCustomers: (state) => {
+    state.loading.status = REQUESTING;
+  },
+  loadResults: (state, { payload }) => {
+    state.loading.status = SUCCESS;
+    state.customers = payload;
+  },
+
+  cleanCustomerStorage: (state) => {
+    state.clean.status = REQUESTING;
+  },
+
+  cleanCustomerStorageResult: (state) => {
+    state.loading.status = SUCCESS;
+    state.customers = initialState.customers;
+  },
 };
 
 const slice = createSlice({
@@ -94,6 +117,10 @@ export const {
   editCustomerError,
   editCustomerStatus,
   setFormField,
+  loadCustomers,
+  loadResults,
+  cleanCustomerStorage,
+  cleanCustomerStorageResult,
 } = slice.actions;
 
 export default slice.reducer;
