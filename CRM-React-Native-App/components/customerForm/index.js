@@ -5,43 +5,68 @@ import { useUpdateField } from "../../features/customer/hooks";
 import Button from "../Button";
 import stylesFn from "./style";
 import { regionsBtnOptions, isActionBtnOptions } from "../../util/constans";
+import { PENDING } from "../../util/constans";
 
-const CustomerForm = ({ onSubmit }) => {
+const CustomerForm = ({ onSubmit, customerId, status }) => {
   const styles = stylesFn();
   const { navigate } = useNavigation();
-  const { fields, setFormField } = useUpdateField();
+  const { fields, setFormField } = useUpdateField(customerId);
 
-  const { firstName, lastName, isActive, regionId } = fields;
+  const { firstName, lastName, isActive, region } = fields;
 
-  const [isActionBtnList, setIsActionBtnList] =
-    React.useState(isActionBtnOptions);
-  const [regionsBtnList, setRegionsBtnList] = React.useState(regionsBtnOptions);
+  console.log("status", status);
+  console.log("fields from form: ", fields);
 
-  const selectRegion = (item) => {
-    setRegionsBtnList(
-      regionsBtnList.map((el) => {
-        if (el.id == item.id) {
-          return { ...el, backgroundColor: "#13678A", color: "#FFFFFF" };
-        } else {
-          return { ...el, backgroundColor: "#FFFFFF", color: "#000000" };
-        }
-      })
-    );
-    setFormField("regionId", item.t);
+  //generate regions buttons list - start
+  const getBtnListWithSelectedBtnUpdated = (btnList, selectedBtnId) => {
+    console.log("btnList", btnList);
+    console.log("selectedBtnId", selectedBtnId);
+    return btnList.map((el) => {
+      if (el.id == selectedBtnId) {
+        return { ...el, backgroundColor: "#13678A", color: "#FFFFFF" };
+      } else {
+        return { ...el, backgroundColor: "#FFFFFF", color: "#000000" };
+      }
+    });
   };
+
+  const [regionsBtnList, setRegionsBtnList] = React.useState(
+    customerId
+      ? getBtnListWithSelectedBtnUpdated(regionsBtnOptions, region?.id)
+      : regionsBtnOptions
+  );
+
+  const selectRegion = ({ id, title }) => {
+    setRegionsBtnList(getBtnListWithSelectedBtnUpdated(regionsBtnList, id));
+    setFormField("region", { id, title });
+  };
+
+  //generate regions buttons list - end
+
+  //generate Active buttons list - start
+
+  const getActiveBtnListUpdated = (btnList, isActive) => {
+    return btnList.map((el) => {
+      if (el.isActive == isActive) {
+        return { ...el, backgroundColor: "#13678A", color: "#FFFFFF" };
+      } else {
+        return { ...el, backgroundColor: "#FFFFFF", color: "#000000" };
+      }
+    });
+  };
+
+  const [isActionBtnList, setIsActionBtnList] = React.useState(
+    customerId
+      ? getActiveBtnListUpdated(isActionBtnOptions, isActive)
+      : isActionBtnOptions
+  );
 
   const selectActiveBtn = (item) => {
-    setIsActionBtnList(
-      isActionBtnList.map((el) => {
-        if (el.id == item.id) {
-          return { ...el, backgroundColor: "#13678A", color: "#FFFFFF" };
-        } else {
-          return { ...el, backgroundColor: "#FFFFFF", color: "#000000" };
-        }
-      })
-    );
+    setIsActionBtnList(getActiveBtnListUpdated(isActionBtnList, item.isActive));
     setFormField("isActive", item.isActive);
   };
+
+  //generate Active buttons list - end
 
   const onHandleSubmit = () => {
     onSubmit();
@@ -100,7 +125,7 @@ const CustomerForm = ({ onSubmit }) => {
         <Button
           text={"Save Customer"}
           onPress={onHandleSubmit}
-          disabled={false}
+          disabled={status !== PENDING}
         />
       </View>
     </View>

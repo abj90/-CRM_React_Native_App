@@ -23,6 +23,6 @@ export function* takeCreateCustomer() {
 
     yield put(createCustomerResult(result));
   } catch (err) {
-    yield put(createCustomerError(console.error.toString()));
+    yield put(createCustomerError(err.toString()));
   }
 }

@@ -4,10 +4,10 @@ import RegionListRow from "./RegionListRow";
 import stylesFn from "./style";
 import Button from "../../../components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { regions } from "../../../util/constans";
+import { regionsBtnOptions } from "../../../util/constans";
 
 const RegionList = () => {
-  const [regionsList, setRegionsList] = React.useState(regions);
+  const [regionsList, setRegionsList] = React.useState(regionsBtnOptions);
 
   const { navigate } = useNavigation();
   const styles = stylesFn();

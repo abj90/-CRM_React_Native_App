@@ -1,18 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import CustomerForm from "../../../components/customerForm";
-import { useCreateCustomer } from "../hooks";
+import { useCreateCustomer, useCreateCustomerStatus } from "../hooks";
 
 const CreateCustomer = () => {
   const { onSubmit } = useCreateCustomer();
+  const status = useCreateCustomerStatus();
 
   return (
     <View>
-      <CustomerForm onSubmit={onSubmit} />
+      <CustomerForm onSubmit={onSubmit} status={status} customerId={null} />
     </View>
   );
 };
 
 export default CreateCustomer;
-
-const styles = StyleSheet.create({});

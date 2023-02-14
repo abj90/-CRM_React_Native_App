@@ -12,13 +12,13 @@ const CustomerDetail = ({ item }) => {
   };
 
   return (
-    <TouchableOpacity onPress={() => console.log("hi")}>
+    <TouchableOpacity onPress={() => navigate("Edit", { customerId: item.id })}>
       <View style={styles.customerDetailContainer}>
         <Text>ID: {item.id}</Text>
         <Text>First Name: {item.firstName}</Text>
         <Text>Last Name: {item.lastName}</Text>
         <Text>Active: {getCustomerStatus(item.isActive)}</Text>
-        <Text>Region: {item.region}</Text>
+        <Text>Region: {item.region.title}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -1,9 +1,8 @@
 import { FlatList, Text, View } from "react-native";
 import React from "react";
-import { useRoute } from "@react-navigation/native";
 import { useGetCustomersByRegion } from "../hooks";
 import CustomerDetail from "./CustomerDetail";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import Button from "../../../components/Button";
 import stylesFn from "./style";
 
@@ -11,9 +10,7 @@ const CustomersByRegion = () => {
   const styles = stylesFn();
   const { params } = useRoute();
   const { navigate } = useNavigation();
-  const { customerListFilteredByRegion } = useGetCustomersByRegion(
-    params.regionId
-  );
+  const customerListFilteredByRegion = useGetCustomersByRegion(params.regionId);
 
   return (
     <View style={styles.container}>
