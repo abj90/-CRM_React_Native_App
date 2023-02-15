@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -12,6 +13,13 @@ const CustomerForm = ({ onSubmit, customerId, status }) => {
   const { navigate } = useNavigation();
   const { fields, setFormField } = useUpdateField(customerId);
 
+  useEffect(() => {
+    setRegionsBtnList(
+      getBtnListWithSelectedBtnUpdated(regionsBtnList, region?.id)
+    );
+    setIsActionBtnList(getActiveBtnListUpdated(isActionBtnList, isActive));
+  }, [fields]);
+
   const { firstName, lastName, isActive, region } = fields;
 
   //generate regions buttons list - start
@@ -25,11 +33,7 @@ const CustomerForm = ({ onSubmit, customerId, status }) => {
     });
   };
 
-  const [regionsBtnList, setRegionsBtnList] = React.useState(
-    customerId
-      ? getBtnListWithSelectedBtnUpdated(regionsBtnOptions, region?.id)
-      : regionsBtnOptions
-  );
+  const [regionsBtnList, setRegionsBtnList] = React.useState(regionsBtnOptions);
 
   const selectRegion = ({ id, title }) => {
     setRegionsBtnList(getBtnListWithSelectedBtnUpdated(regionsBtnList, id));
@@ -50,11 +54,8 @@ const CustomerForm = ({ onSubmit, customerId, status }) => {
     });
   };
 
-  const [isActionBtnList, setIsActionBtnList] = React.useState(
-    customerId
-      ? getActiveBtnListUpdated(isActionBtnOptions, isActive)
-      : isActionBtnOptions
-  );
+  const [isActionBtnList, setIsActionBtnList] =
+    React.useState(isActionBtnOptions);
 
   const selectActiveBtn = (item) => {
     setIsActionBtnList(getActiveBtnListUpdated(isActionBtnList, item.isActive));

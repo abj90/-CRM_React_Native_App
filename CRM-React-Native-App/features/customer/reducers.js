@@ -49,8 +49,7 @@ const reducers = {
     state.edit.status = REQUESTING;
   },
   setForm: (state, { payload }) => {
-    const customer = state.customers.find((a) => (a.id = payload));
-
+    const customer = state.customers.find((a) => a.id == payload);
     if (customer) {
       state.form.fields = customer;
     } else {
@@ -81,6 +80,10 @@ const reducers = {
     };
 
     state.form.fields = fields;
+  },
+  resetFields: (state) => {
+    state.create.status = PENDING;
+    state.form.fields = initialState.form.fields;
   },
 
   loadCustomers: (state) => {
@@ -121,6 +124,7 @@ export const {
   loadResults,
   cleanCustomerStorage,
   cleanCustomerStorageResult,
+  resetFields,
 } = slice.actions;
 
 export default slice.reducer;

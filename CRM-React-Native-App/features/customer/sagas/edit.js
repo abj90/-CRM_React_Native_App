@@ -4,6 +4,8 @@ import {
   editCustomerResult,
   editCustomerError,
 } from "../reducers";
+import { set } from "../../../util/async-storage";
+import { CUSTOMERS_KEY } from "../../../util/constans";
 
 export function* watchEditCustomer() {
   yield takeLatest(editCustomer.toString(), takeEditCustomer);
@@ -23,6 +25,8 @@ export function* takeEditCustomer(action) {
 
     // pretend call to API
     yield delay(500);
+
+    yield set(CUSTOMERS_KEY, result);
 
     yield put(editCustomerResult(result));
   } catch (err) {

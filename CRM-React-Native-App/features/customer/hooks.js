@@ -7,6 +7,7 @@ import {
   setForm,
   loadCustomers,
   cleanCustomerStorage,
+  resetFields,
 } from "./reducers";
 import { PENDING } from "../../util/constans";
 
@@ -44,8 +45,10 @@ export const useCreateCustomerStatus = () => {
 
 export const useEditCustomer = (customerId) => {
   const dispatch = useDispatch();
+  const status = useEditCustomerStatus();
 
   return {
+    status,
     onSubmit: () => {
       console.log("Dispatching EDIT_CUSTOMER action");
       dispatch(editCustomer(customerId));
@@ -59,8 +62,10 @@ export const useUpdateField = (customerId) => {
   const fields = useSelector((state) => state.customer.form.fields);
 
   useEffect(() => {
-    if (customerId && status === PENDING) {
+    if (customerId) {
       dispatch(setForm(customerId));
+    } else {
+      dispatch(resetFields(customerId));
     }
   }, [customerId, status]);
 
@@ -68,7 +73,6 @@ export const useUpdateField = (customerId) => {
     fields,
     setFormField: (field, value) => {
       console.log(`Updating field ${field} to ${value}`);
-
       dispatch(setFormField({ field, value }));
     },
   };
