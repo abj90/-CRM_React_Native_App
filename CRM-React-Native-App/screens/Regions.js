@@ -1,5 +1,5 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import RegionList from "../features/customer/region-list/index";
+import { SafeAreaView } from "react-native";
+import RegionList from "../features/customer/components/region-list";
 
 const RegionListScreen = () => {
   return (

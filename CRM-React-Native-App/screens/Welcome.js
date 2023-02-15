@@ -1,5 +1,5 @@
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
-import Welcome from "../features/customer/welcome";
+import { SafeAreaView } from "react-native";
+import Welcome from "../features/customer/components/welcome";
 
 const WelcomeScreen = () => {
   return (

@@ -1,10 +1,11 @@
 import React from "react";
 import { View, FlatList, Text } from "react-native";
 import RegionListRow from "./RegionListRow";
-import stylesFn from "./style";
-import Button from "../../../components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { regionsBtnOptions } from "../../../util/constans";
+
+import stylesFn from "./style";
+import Button from "../../../../components/Button";
+import { regionsBtnOptions } from "../../../../util/constans";
 import CustomerToBeContacted from "../customerToBeContacted";
 
 const RegionList = () => {

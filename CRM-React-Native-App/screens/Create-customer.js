@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
 import React from "react";
-import CreateCustomer from "../features/customer/create-customer";
+import CreateCustomer from "../features/customer/components/create-customer";
 
 const CreateCustomerScreen = () => {
   return (

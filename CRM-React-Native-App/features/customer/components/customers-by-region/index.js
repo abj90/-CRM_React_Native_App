@@ -1,9 +1,10 @@
 import { FlatList, Text, View } from "react-native";
 import React from "react";
-import { useGetCustomersByRegion } from "../hooks";
-import CustomerDetail from "./CustomerDetail";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import Button from "../../../components/Button";
+
+import { useGetCustomersByRegion } from "../../hooks";
+import CustomerDetail from "./CustomerDetail";
+import Button from "../../../../components/Button";
 import stylesFn from "./style";
 
 const CustomersByRegion = () => {

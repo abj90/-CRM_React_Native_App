@@ -2,11 +2,15 @@ import { useEffect } from "react";
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useUpdateField } from "../../features/customer/hooks";
-import Button from "../Button";
+
+import { useUpdateField } from "../../hooks";
+import Button from "../../../../components/Button";
 import stylesFn from "./style";
-import { regionsBtnOptions, isActionBtnOptions } from "../../util/constans";
-import { PENDING } from "../../util/constans";
+import {
+  regionsBtnOptions,
+  isActionBtnOptions,
+  PENDING,
+} from "../../../../util/constans";
 
 const CustomerForm = ({ onSubmit, customerId, status }) => {
   const styles = stylesFn();

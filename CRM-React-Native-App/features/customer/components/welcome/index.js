@@ -1,8 +1,9 @@
 import { View, Text, Alert } from "react-native";
-import Button from "../../../components/Button";
-import stylesFn from "./style";
 import { useNavigation } from "@react-navigation/native";
-import { useCleanAsncStorage } from "../hooks";
+
+import Button from "../../../../components/Button";
+import stylesFn from "./style";
+import { useCleanAsncStorage } from "../../hooks";
 
 const Welcome = () => {
   const { navigate } = useNavigation();

@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { Keyboard, View, Text } from "react-native";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
-import Button from "../../../components/Button";
+
+import Button from "../../../../components/Button";
 import stylesFn from "./style";
-import { regionsBtnOptions } from "../../../util/constans";
+import { regionsBtnOptions } from "../../../../util/constans";
 
 const onSubmit = (seconds) => {
   Keyboard.dismiss();

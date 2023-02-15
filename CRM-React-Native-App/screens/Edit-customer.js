@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView } from "react-native";
 import React from "react";
-import EditCustomer from "../features/customer/edit-customer";
+import EditCustomer from "../features/customer/components/edit-customer";
 
 const EditCustomerScreen = () => {
   return (

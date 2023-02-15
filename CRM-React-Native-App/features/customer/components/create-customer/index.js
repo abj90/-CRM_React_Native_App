@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import React from "react";
-import CustomerForm from "../../../components/customerForm";
-import { useCreateCustomer, useCreateCustomerStatus } from "../hooks";
+import CustomerForm from "../customerForm";
+import { useCreateCustomer, useCreateCustomerStatus } from "../../hooks";
 
 const CreateCustomer = () => {
   const { onSubmit } = useCreateCustomer();

@@ -1,7 +1,8 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { useEditCustomer, useEditCustomerStatus } from "../hooks";
-import CustomerForm from "../../../components/customerForm";
+
+import { useEditCustomer, useEditCustomerStatus } from "../../hooks";
+import CustomerForm from "../customerForm";
 
 import React from "react";
 

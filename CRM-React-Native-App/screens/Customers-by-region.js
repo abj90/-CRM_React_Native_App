@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
-import CustomersByRegion from "../features/customer/customers-by-region";
+import CustomersByRegion from "../features/customer/components/customers-by-region";
 
 const CustomersByRegionScreen = () => {
   return (
