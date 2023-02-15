@@ -5,6 +5,7 @@ import stylesFn from "./style";
 import Button from "../../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { regionsBtnOptions } from "../../../util/constans";
+import CustomerToBeContacted from "../customerToBeContacted";
 
 const RegionList = () => {
   const [regionsList, setRegionsList] = React.useState(regionsBtnOptions);
@@ -27,6 +28,9 @@ const RegionList = () => {
         renderItem={({ item }) => <RegionListRow item={item} />}
         keyExtractor={(item) => item.id}
       />
+      <View style={styles.pushNotificationBtn}>
+        <CustomerToBeContacted />
+      </View>
     </View>
   );
 };

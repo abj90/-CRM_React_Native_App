@@ -17,6 +17,9 @@ const stylesFn = () => {
       borderColor: "#13678A",
       borderWidth: 2,
     },
+    pushNotificationBtn: {
+      marginTop: 40,
+    },
   });
 };
 
